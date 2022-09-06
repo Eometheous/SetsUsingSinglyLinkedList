@@ -54,8 +54,8 @@ public class Set {
     }
 
     public Set unionOf(Set s2) {
-        Set unionSet = new Set();
         if (!isUnion(s2)) return null;
+        Set unionSet = new Set();
         Node node1 = head;
         Node node2 = s2.head;
 
