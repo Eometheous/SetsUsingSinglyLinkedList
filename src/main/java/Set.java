@@ -53,6 +53,24 @@ public class Set {
         return true;
     }
 
+    public Set intersection(Set s2) {
+        Set intersectionSet = new Set();
+        Node searchNode1 = head;
+        Node searchNode2 = s2.head;
+
+        while (searchNode1 != null) {
+            while (searchNode2 != null) {
+                if (searchNode1.getItem().equals(searchNode2.getItem())) {
+                    intersectionSet.addItem(searchNode1.getItem());
+                }
+                searchNode2 = searchNode2.getNext();
+            }
+            searchNode1 = searchNode1.getNext();
+            searchNode2 = s2.head;
+        }
+        return intersectionSet;
+    }
+
     public Set union(Set s2) {
         if (!hasElementsInCommon(s2)) return null;
         Set unionSet = new Set();
@@ -81,6 +99,7 @@ public class Set {
                 searchNode2 = searchNode2.getNext();
             }
             searchNode1 = searchNode1.getNext();
+            searchNode2 = s2.head;
         }
         return false;
     }
