@@ -24,7 +24,7 @@ public class Set {
     public Node search(String item) {
         Node searchNode = head;
         while (searchNode != null) {
-            if (searchNode.getItem() == item) return searchNode;
+            if (searchNode.getItem().equals(item)) return searchNode;
             searchNode = searchNode.getNext();
         }
         return null;
@@ -33,14 +33,14 @@ public class Set {
     public Node findPreviousNode(String item) {
         Node previousNode = head;
         while (previousNode.getNext() != null) {
-            if (previousNode.getNext().getItem() == item) return previousNode;
+            if (previousNode.getNext().getItem().equals(item)) return previousNode;
             previousNode = previousNode.getNext();
         }
         return null;
     }
 
     public boolean remove(String item) {
-        if (head.getItem() == item) {
+        if (head.getItem().equals(item)) {
             head = head.getNext();
             numberOfItems--;
             return true;
@@ -75,7 +75,7 @@ public class Set {
         Node searchNode2 = s2.head;
         while (searchNode1 != null) {
             while (searchNode2 != null) {
-                if (searchNode1.getItem() == searchNode2.getItem()) {
+                if (searchNode1.getItem().equals(searchNode2.getItem())) {
                     return true;
                 }
                 searchNode2 = searchNode2.getNext();
