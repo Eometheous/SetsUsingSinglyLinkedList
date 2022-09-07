@@ -11,14 +11,16 @@ public class Set {
         return numberOfItems;
     }
 
-    public void addItem(String item) {
+    public boolean addItem(String item) {
         Node newNode = new Node();
         if (search(item) == null) {
             newNode.setItem(item);
             newNode.setNext(head);
             head = newNode;
             numberOfItems++;
+            return true;
         }
+        return false;
     }
 
     public Node search(String item) {
