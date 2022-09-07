@@ -53,8 +53,8 @@ public class Set {
         return true;
     }
 
-    public Set unionOf(Set s2) {
-        if (!isUnion(s2)) return null;
+    public Set union(Set s2) {
+        if (!hasElementsInCommon(s2)) return null;
         Set unionSet = new Set();
         Node node1 = head;
         Node node2 = s2.head;
@@ -70,7 +70,7 @@ public class Set {
         return unionSet;
     }
 
-    public boolean isUnion(Set s2) {
+    public boolean hasElementsInCommon(Set s2) {
         Node searchNode1 = head;
         Node searchNode2 = s2.head;
         while (searchNode1 != null) {
