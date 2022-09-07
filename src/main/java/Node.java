@@ -1,9 +1,9 @@
 public class Node {
     private Node next;
-    private int item;
+    private String item;
 
     public Node() {
-        item = 0;
+        item = "0";
         next = null;
     }
 
@@ -15,11 +15,11 @@ public class Node {
         this.next = next;
     }
 
-    public int getItem() {
+    public String getItem() {
         return item;
     }
 
-    public void setItem(int item) {
+    public void setItem(String item) {
         this.item = item;
     }
 }

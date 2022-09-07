@@ -11,36 +11,38 @@ public class Set {
         return numberOfItems;
     }
 
-    public void addItem(int item) {
+    public boolean addItem(String item) {
         Node newNode = new Node();
         if (search(item) == null) {
             newNode.setItem(item);
             newNode.setNext(head);
             head = newNode;
             numberOfItems++;
+            return true;
         }
+        return false;
     }
 
-    public Node search(int item) {
+    public Node search(String item) {
         Node searchNode = head;
         while (searchNode != null) {
-            if (searchNode.getItem() == item) return searchNode;
+            if (searchNode.getItem().equals(item)) return searchNode;
             searchNode = searchNode.getNext();
         }
         return null;
     }
 
-    public Node findPreviousNode(int item) {
+    public Node findPreviousNode(String item) {
         Node previousNode = head;
         while (previousNode.getNext() != null) {
-            if (previousNode.getNext().getItem() == item) return previousNode;
+            if (previousNode.getNext().getItem().equals(item)) return previousNode;
             previousNode = previousNode.getNext();
         }
         return null;
     }
 
-    public boolean remove(int item) {
-        if (head.getItem() == item) {
+    public boolean remove(String item) {
+        if (head.getItem().equals(item)) {
             head = head.getNext();
             numberOfItems--;
             return true;
@@ -53,9 +55,27 @@ public class Set {
         return true;
     }
 
-    public Set unionOf(Set s2) {
+    public Set intersection(Set s2) {
+        Set intersectionSet = new Set();
+        Node searchNode1 = head;
+        Node searchNode2 = s2.head;
+
+        while (searchNode1 != null) {
+            while (searchNode2 != null) {
+                if (searchNode1.getItem().equals(searchNode2.getItem())) {
+                    intersectionSet.addItem(searchNode1.getItem());
+                }
+                searchNode2 = searchNode2.getNext();
+            }
+            searchNode1 = searchNode1.getNext();
+            searchNode2 = s2.head;
+        }
+        return intersectionSet;
+    }
+
+    public Set union(Set s2) {
+        if (!hasElementsInCommon(s2)) return null;
         Set unionSet = new Set();
-        if (!isUnion(s2)) return null;
         Node node1 = head;
         Node node2 = s2.head;
 
@@ -70,17 +90,18 @@ public class Set {
         return unionSet;
     }
 
-    public boolean isUnion(Set s2) {
+    public boolean hasElementsInCommon(Set s2) {
         Node searchNode1 = head;
         Node searchNode2 = s2.head;
         while (searchNode1 != null) {
             while (searchNode2 != null) {
-                if (searchNode1.getItem() == searchNode2.getItem()) {
+                if (searchNode1.getItem().equals(searchNode2.getItem())) {
                     return true;
                 }
                 searchNode2 = searchNode2.getNext();
             }
             searchNode1 = searchNode1.getNext();
+            searchNode2 = s2.head;
         }
         return false;
     }
