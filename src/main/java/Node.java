@@ -1,25 +1,25 @@
-public class Node {
-    private Node next;
-    private String item;
+public class Node <T> {
+    private Node<T> next;
+    private T item;
 
     public Node() {
-        item = "0";
+        item = null;
         next = null;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
-    public String getItem() {
+    public T getItem() {
         return item;
     }
 
-    public void setItem(String item) {
+    public void setItem(T item) {
         this.item = item;
     }
 }
