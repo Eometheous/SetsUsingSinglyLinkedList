@@ -7,7 +7,7 @@ public class Set <T> {
         numberOfItems = 0;
     }
 
-    public int returnNumberOfItem() {
+    public int numberOfItems() {
         return numberOfItems;
     }
 
@@ -42,17 +42,25 @@ public class Set <T> {
     }
 
     public boolean remove(T item) {
+//        if (head.getItem().equals(item)) {
+//            head = head.getNext();
+//            numberOfItems--;
+//            return true;
+//        }
+        Node<T> node = search(item);
+        if (node == null) return false;
+
         if (head.getItem().equals(item)) {
             head = head.getNext();
             numberOfItems--;
             return true;
         }
-        Node<T> node = search(item);
-        if (node == null) return false;
-        Node<T> previousNode = findPreviousNode(item);
-        previousNode.setNext(node.getNext());
-        numberOfItems--;
-        return true;
+        else {
+            Node<T> previousNode = findPreviousNode(item);
+            previousNode.setNext(node.getNext());
+            numberOfItems--;
+            return true;
+        }
     }
 
     public Set<T> intersection(Set<T> s2) {
@@ -74,18 +82,19 @@ public class Set <T> {
     }
 
     public Set<T> union(Set<T> s2) {
-        if (!hasElementsInCommon(s2)) return null;
         Set<T> unionSet = new Set<>();
-        Node<T> node1 = head;
-        Node<T> node2 = s2.head;
+        if (hasElementsInCommon(s2)) {
+            Node<T> node1 = head;
+            Node<T> node2 = s2.head;
 
-        while (node1 != null) {
-            unionSet.addItem(node1.getItem());
-            node1 = node1.getNext();
-        }
-        while (node2 != null) {
-            unionSet.addItem(node2.getItem());
-            node2 = node2.getNext();
+            while (node1 != null) {
+                unionSet.addItem(node1.getItem());
+                node1 = node1.getNext();
+            }
+            while (node2 != null) {
+                unionSet.addItem(node2.getItem());
+                node2 = node2.getNext();
+            }
         }
         return unionSet;
     }

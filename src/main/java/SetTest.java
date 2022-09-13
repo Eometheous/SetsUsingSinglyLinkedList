@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SetTest {
-    Set<String> set;
+    static Set<String> set;
     @BeforeAll
-    public void setUp() {
+    public static void setUp() {
         set = new Set<>();
     }
 
@@ -14,7 +14,7 @@ public class SetTest {
     public void testAddItem() {
         assertTrue(set.addItem("3"));
         assertFalse(set.addItem("3"));
-        assertEquals(1, set.returnNumberOfItem());
+        assertEquals(1, set.numberOfItems());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class SetTest {
     public void testRemove() {
         set.addItem("3");
         assertTrue(set.remove("3")); //testing removing the head
-        assertEquals(0, set.returnNumberOfItem());
+        assertEquals(0, set.numberOfItems());
         assertFalse(set.remove("5")); //testing removing an item not in the list
         set.addItem("4");
         set.addItem("3");
@@ -49,9 +49,9 @@ public class SetTest {
         set1.addItem(3);
         set2.addItem(4);
 
-        assertEquals(0,set1.intersection(set2).returnNumberOfItem());
+        assertEquals(0,set1.intersection(set2).numberOfItems());
         set2.addItem(3);
-        assertEquals(1, set1.intersection(set2).returnNumberOfItem());
+        assertEquals(1, set1.intersection(set2).numberOfItems());
         assertEquals(3, set1.intersection(set2).search(3).getItem());
     }
 
@@ -63,9 +63,9 @@ public class SetTest {
         set1.addItem(2);
         set1.addItem(1);
         set2.addItem(5);
-        assertEquals(0,set1.union(set2).returnNumberOfItem());
+        assertEquals(0,set1.union(set2).numberOfItems());
         set2.addItem(4);
         set2.addItem(3);
-        assertEquals(5,set1.union(set2).returnNumberOfItem());
+        assertEquals(5,set1.union(set2).numberOfItems());
     }
 }
