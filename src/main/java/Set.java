@@ -42,25 +42,18 @@ public class Set <T> {
     }
 
     public boolean remove(T item) {
-//        if (head.getItem().equals(item)) {
-//            head = head.getNext();
-//            numberOfItems--;
-//            return true;
-//        }
         Node<T> node = search(item);
         if (node == null) return false;
 
         if (head.getItem().equals(item)) {
             head = head.getNext();
-            numberOfItems--;
-            return true;
         }
         else {
             Node<T> previousNode = findPreviousNode(item);
             previousNode.setNext(node.getNext());
-            numberOfItems--;
-            return true;
         }
+        numberOfItems--;
+        return true;
     }
 
     public Set<T> intersection(Set<T> s2) {
