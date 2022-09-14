@@ -1,3 +1,7 @@
+/**
+ * A class implementing a set of items as a singly linked list
+ * @param <T> The type of item the set will hold (Integer, String, Char, etc...)
+ */
 public class Set <T> {
     private Node<T> head;
     private int numberOfItems;
@@ -11,6 +15,11 @@ public class Set <T> {
         return numberOfItems;
     }
 
+    /**
+     * Adds an item to the set
+     * @param item the item being added
+     * @return true if the item was added, false if it wasn't
+     */
     public boolean addItem(T item) {
         Node<T> newNode = new Node<>();
         if (search(item) == null) {
@@ -23,6 +32,11 @@ public class Set <T> {
         return false;
     }
 
+    /**
+     * Searches for a node containing the item in the set
+     * @param item the item being searched
+     * @return the node containing the item
+     */
     public Node<T> search(T item) {
         Node<T> searchNode = head;
         while (searchNode != null) {
@@ -32,6 +46,12 @@ public class Set <T> {
         return null;
     }
 
+    /**
+     * Finds the previous node of the item being searched
+     * This is used for deleting a node somewhere in the middle or at the end of the set
+     * @param item the item being searched
+     * @return the node containing the item
+     */
     public Node<T> findPreviousNode(T item) {
         Node<T> previousNode = head;
         while (previousNode.getNext() != null) {
@@ -41,6 +61,11 @@ public class Set <T> {
         return null;
     }
 
+    /**
+     * Removes an item from the set
+     * @param item the item being removed
+     * @return true if the item was removed, false if the item wasn't found
+     */
     public boolean remove(T item) {
         Node<T> node = search(item);
         if (node == null) return false;
@@ -56,6 +81,11 @@ public class Set <T> {
         return true;
     }
 
+    /**
+     * Finds the intersection of this and another set
+     * @param s2 the second set
+     * @return the intersection set of this and s2
+     */
     public Set<T> intersection(Set<T> s2) {
         Set<T> intersectionSet = new Set<>();
         Node<T> searchNode1 = head;
@@ -74,6 +104,11 @@ public class Set <T> {
         return intersectionSet;
     }
 
+    /**
+     * Finds the union of this and another set
+     * @param s2 the second set
+     * @return the union set of this and s2
+     */
     public Set<T> union(Set<T> s2) {
         Set<T> unionSet = new Set<>();
         if (hasElementsInCommon(s2)) {
@@ -92,6 +127,11 @@ public class Set <T> {
         return unionSet;
     }
 
+    /**
+     * Used in union to finds if this and another set have at least one element in common
+     * @param s2 the second set
+     * @return true if this and s2 have at least one element in common
+     */
     public boolean hasElementsInCommon(Set<T> s2) {
         Node<T> searchNode1 = head;
         Node<T> searchNode2 = s2.head;
@@ -108,6 +148,10 @@ public class Set <T> {
         return false;
     }
 
+    /**
+     * Overrides toString from Object
+     * @return a string listing all items in the set
+     */
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
