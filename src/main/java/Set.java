@@ -22,7 +22,7 @@ public class Set <T> {
      */
     public boolean addItem(T item) {
         Node<T> newNode = new Node<>();
-        if (search(item) == null) {
+        if (!inSet(item)) {
             newNode.setItem(item);
             newNode.setNext(head);
             head = newNode;
@@ -47,6 +47,20 @@ public class Set <T> {
     }
 
     /**
+     * Checks if an item is in the set
+     * @param item the item being looked for in the set
+     * @return true if the item is in the set, false if it isn't
+     */
+    public boolean inSet(T item) {
+        Node<T> searchNode = head;
+        while (searchNode != null) {
+            if (searchNode.getItem().equals(item)) return true;
+            searchNode = searchNode.getNext();
+        }
+        return false;
+    }
+
+    /**
      * Finds the previous node of the item being searched
      * This is used for deleting a node somewhere in the middle or at the end of the set
      * @param item the item being searched
@@ -67,15 +81,14 @@ public class Set <T> {
      * @return true if the item was removed, false if the item wasn't found
      */
     public boolean remove(T item) {
-        Node<T> node = search(item);
-        if (node == null) return false;
+        if (!inSet(item)) return false;
 
         if (head.getItem().equals(item)) {
             head = head.getNext();
         }
         else {
             Node<T> previousNode = findPreviousNode(item);
-            previousNode.setNext(node.getNext());
+            previousNode.setNext(previousNode.getNext().getNext());
         }
         numberOfItems--;
         return true;
