@@ -124,41 +124,19 @@ public class Set <T> {
      */
     public Set<T> union(Set<T> s2) {
         Set<T> unionSet = new Set<>();
-        if (hasElementsInCommon(s2)) {
-            Node<T> node1 = head;
-            Node<T> node2 = s2.head;
 
-            while (node1 != null) {
-                unionSet.addItem(node1.getItem());
-                node1 = node1.getNext();
-            }
-            while (node2 != null) {
-                unionSet.addItem(node2.getItem());
-                node2 = node2.getNext();
-            }
+        Node<T> node1 = head;
+        Node<T> node2 = s2.head;
+
+        while (node1 != null) {
+            unionSet.addItem(node1.getItem());
+            node1 = node1.getNext();
+        }
+        while (node2 != null) {
+            unionSet.addItem(node2.getItem());
+            node2 = node2.getNext();
         }
         return unionSet;
-    }
-
-    /**
-     * Used in union to finds if this and another set have at least one element in common
-     * @param s2 the second set
-     * @return true if this and s2 have at least one element in common
-     */
-    public boolean hasElementsInCommon(Set<T> s2) {
-        Node<T> searchNode1 = head;
-        Node<T> searchNode2 = s2.head;
-        while (searchNode1 != null) {
-            while (searchNode2 != null) {
-                if (searchNode1.getItem().equals(searchNode2.getItem())) {
-                    return true;
-                }
-                searchNode2 = searchNode2.getNext();
-            }
-            searchNode1 = searchNode1.getNext();
-            searchNode2 = s2.head;
-        }
-        return false;
     }
 
     /**

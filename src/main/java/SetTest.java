@@ -87,7 +87,7 @@ public class SetTest {
         set1.addItem(2);
         set1.addItem(1);
         set2.addItem(5);
-        assertEquals(0,set1.union(set2).numberOfItems());
+        assertEquals(4,set1.union(set2).numberOfItems());
         set2.addItem(4);
         set2.addItem(3);
         assertEquals(5,set1.union(set2).numberOfItems());
