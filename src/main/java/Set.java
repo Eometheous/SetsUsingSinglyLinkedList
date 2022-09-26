@@ -32,6 +32,14 @@ public class Set <T> {
         return false;
     }
 
+    public void cloneNode(T item) {
+        Node<T> clonedNode = new Node<>();
+        clonedNode.setItem(item);
+        clonedNode.setNext(head);
+        head = clonedNode;
+        numberOfItems++;
+    }
+
     /**
      * Searches for a node containing the item in the set
      * @param item the item being searched
@@ -107,7 +115,7 @@ public class Set <T> {
         while (searchNode1 != null) {
             while (searchNode2 != null) {
                 if (searchNode1.getItem().equals(searchNode2.getItem())) {
-                    intersectionSet.addItem(searchNode1.getItem());
+                    intersectionSet.cloneNode(searchNode1.getItem());
                 }
                 searchNode2 = searchNode2.getNext();
             }
@@ -129,7 +137,7 @@ public class Set <T> {
         Node<T> node2 = s2.head;
 
         while (node1 != null) {
-            unionSet.addItem(node1.getItem());
+            unionSet.cloneNode(node1.getItem());
             node1 = node1.getNext();
         }
         while (node2 != null) {
